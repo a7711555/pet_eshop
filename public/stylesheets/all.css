@@ -60,7 +60,7 @@
 
 .submenu-mask:hover {
   background-color: rgba(239, 213, 119, 0.8);
-  filter: blur(10px);
+  filter: blur(5px);
   transition: all .5s
 }
 
@@ -105,7 +105,7 @@
 }
 
 .item-card .item-body {
-  border: 1px solid #FDF9CD;
+  border: 1px solid rgb(248, 239, 142);
 }
 
 .item-card .item-tag {
@@ -127,7 +127,7 @@
 }
 
 .item-card .item-name {
-  border-right: 1px solid #FDF9CD;
+  border-right: 1px solid rgb(248, 239, 142);
 }
 
 .item-card .cart-btn {
@@ -171,4 +171,21 @@
   top: -30px;
   left: 0;
   font-size: 14px;
+}
+
+/* products  */
+
+.pagination li {
+  border: 1px solid #ffe8a1;
+}
+
+.pagination a {
+  color: #856405;
+  border:none;
+}
+
+.pagination li.active a {
+  border: 1px solid #856405 !important;
+  background: #856405 !important;
+  color: #fff;
 }
