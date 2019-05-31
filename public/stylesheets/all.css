@@ -175,7 +175,7 @@
 
 /* products  */
 
-.pagination li {
+.pagination li a {
   border: 1px solid #ffe8a1;
 }
 
