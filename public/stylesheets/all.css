@@ -181,11 +181,31 @@
 
 .pagination a {
   color: #856405;
-  border:none;
+  border: none;
 }
 
 .pagination li.active a {
   border: 1px solid #856405 !important;
   background: #856405 !important;
   color: #fff;
+}
+
+/* register */
+
+.register-container {
+  background-color: #41aaa2;
+  width: 800px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-register {
+  background-color: #ffffff !important;
+  color: #626a69 !important;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.invalid-feedback {
+  text-align: left;
 }
