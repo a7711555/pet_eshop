@@ -6,8 +6,8 @@ router.get('/', function (req, res, next) {
   res.render('index');
 });
 
-router.get('/products', function (req, res) {
-  res.render('product');
+router.get('/register', function (req, res) {
+  res.render('register');
 });
 
 router.get('/login', function (req, res) {
