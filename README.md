@@ -1,5 +1,5 @@
 # pet_eshop
-This is a simple pet eshop website. You can sign up a account and place an order.
+This is a simple pet eshop website. You can sign up and place an order.
 
 # Build with
 * Bootstrap 4
