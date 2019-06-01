@@ -1,7 +1,7 @@
 # pet_eshop
 This is a simple pet eshop website. You can sign up a account and place an order.
 
-# build with
+# Build with
 * Bootstrap 4
 * Express
 * Firebase
