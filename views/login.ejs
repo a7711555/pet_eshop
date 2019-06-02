@@ -8,12 +8,12 @@
       <form class="w-75" method="POST" action="login/verify">
         <div class="h1 text-center mb-5">登入會員</div>
         <div class="form-group position-relative">
-          <input type="email" class="form-control rounded-0 login-input" name="email" id="exampleInputEmail1"
+          <input type="email" class="form-control rounded-0 login-input" name="email" id="email"
             aria-describedby="emailHelp" placeholder="">
           <label class="login-label">請輸入註冊的電子信箱</label>
         </div>
         <div class="form-group position-relative">
-          <input type="password" class="form-control rounded-0 login-input mt-5 mb-3" name="password" id="exampleInputPassword1"
+          <input type="password" class="form-control rounded-0 login-input mt-5 mb-3" name="password" id="password"
             placeholder="">
           <label class="login-label">請輸入使用者密碼</label>
         </div>
@@ -33,3 +33,14 @@
 </section>
 
 <%- include('partials/footer') -%>
+<script>
+  $(document).ready(function() {
+    $('#email, #password').focusout(function() {
+      if($(this).val().length > 0) {
+        $(this).siblings('.login-label').hide();
+      } else {
+        $(this).siblings('.login-label').show();
+      }
+    });
+  });
+</script>
