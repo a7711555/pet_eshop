@@ -1,0 +1,140 @@
+<%- include('partials/header') -%>
+<section class="container py-5">
+  <h1 class="text-center text-secondary mb-3">結帳</h1>
+  <div class="form-row text-center">
+    <div class="col-12 col-sm-4">
+      <div class="alert alert-primary rounded-pill">
+        1. 輸入訂單資料
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="alert alert-secondary rounded-pill">
+        2. 確認訂單資料
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="alert alert-secondary rounded-pill">
+        3. 付款完成
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-8">
+      <div class="card" id="accordionExample">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+              購物車內容
+            </button>
+          </h2>
+        </div>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <table class="table">
+          <thead>
+            <th>商品名稱</th>
+            <th>數量</th>
+            <th class="align-middle text-right">價格</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="align-middle">金牌西裝</td>
+              <td class="align-middle">1 件</td>
+              <td class="align-middle text-right">$520.00</td>
+            </tr>
+            <tr>
+              <td class="align-middle">神秘披風</td>
+              <td class="align-middle">1 件</td>
+              <td class="align-middle text-right">$630.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" class="align-middle text-right">總額：</td>
+              <td class="align-middle text-right">$1150.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <form class="mt-5">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="lastname">姓氏</label>
+            <input type="text" class="form-control" id="lastname" placeholder="姓氏">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="firstname">名字</label>
+            <input type="text" class="form-control" id="firstname" placeholder="名字">
+          </div>
+        </div>
+        <div class="form-row align-items-end">
+          <div class="form-group col-md-6">
+            <label for="inputAddress">運送地址</label>
+            <select id="inputCity" class="form-control">
+              <option selected>--選擇縣市--</option>
+              <option>臺北市</option>
+              <option>新北市</option>
+              <option>基隆市</option>
+              <option>桃園市</option>
+              <option>新竹縣</option>
+              <option>新竹市</option>
+              <option>苗栗縣</option>
+              <option>臺中市</option>
+              <option>南投縣</option>
+              <option>彰化縣</option>
+              <option>雲林縣</option>
+              <option>嘉義縣</option>
+              <option>嘉義市</option>
+              <option>臺南市</option>
+              <option>高雄市</option>
+              <option>屏東縣</option>
+              <option>宜蘭縣</option>
+              <option>花蓮縣</option>
+              <option>臺東縣</option>
+              <option>澎湖縣</option>
+              <option>金門縣</option>
+              <option>連江縣</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <select id="inputState" class="form-control">
+              <option selected>--鄉鎮市區--</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="inputAddress" placeholder="輸入寄送地址">
+        </div>
+        <hr>
+        <h3>付款方式</h3>
+        <ul style="list-style: none;">
+          <li>貨到付款</li>
+        </ul>
+      </form>
+      <a href="/users/confirm" class="btn btn-warning text-muted btn-block">下一步</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') -%>
+
+<script>
+  $(document).ready(function () {
+    $('#inputCity').on('change', function () {
+      const encodeData = window.btoa(encodeURIComponent($(this).val()));
+      $.ajax({
+        url: '/users/checkout/data/' + encodeData,
+        method: 'POST'
+      }).done(function(res) {
+        let str = '<option>--鄉鎮市區--</option>';
+        for(i in res['data']){
+          str+= '<option>' + res['data'][i] + '</option>'
+        }
+        $('#inputState').html(str);
+      });
+    });
+  });
+</script>
