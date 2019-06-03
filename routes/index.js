@@ -14,5 +14,9 @@ router.get('/login', function (req, res) {
   res.render('login');
 });
 
+router.get('/cart',function(req, res) {
+  res.render('cart');
+});
+
 
 module.exports = router;

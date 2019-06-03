@@ -209,3 +209,41 @@
 .invalid-feedback {
   text-align: left;
 }
+
+/* cart page */
+
+.btn-checkout {
+  background-color: #6db1d4 !important;
+  color: #fff !important;
+  transition: all .5s !important;
+}
+
+.btn-checkout:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .cart-detail {
+    background-color: rgb(240, 240, 240);
+    color: #666;
+  }
+  .cart-detail h2 {
+    background-color: rgb(240, 240, 240);
+    color: #666;
+  }
+}
+
+.cart-item {
+  min-height: 150px;
+  border-bottom: 1px solid grey;
+}
+
+.cart-delete {
+  color: #999;
+  font-size: 1.5rem;
+  transition: all .3s;
+}
+
+.cart-delete:hover {
+  color: rgb(235, 57, 57);
+}
