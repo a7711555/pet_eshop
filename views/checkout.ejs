@@ -130,9 +130,9 @@
         method: 'POST'
       }).done(function(res) {
         let str = '<option>--鄉鎮市區--</option>';
-        for(i in res['data']){
-          str+= '<option>' + res['data'][i] + '</option>'
-        }
+        res['data'].forEach((item) => { 
+          str+= '<option>' + item + '</option>'; 
+        });
         $('#inputState').html(str);
       });
     });
