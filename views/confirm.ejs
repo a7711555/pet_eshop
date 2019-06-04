@@ -1,0 +1,81 @@
+<%- include('partials/header') -%>
+<section class="container py-5">
+  <h1 class="text-center text-secondary mb-3">結帳</h1>
+  <div class="form-row text-center justify-content-center">
+    <div class="col-12 col-sm-4">
+      <div class="alert alert-primary rounded-pill">
+        1. 填寫訂單資料
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="alert alert-primary rounded-pill">
+        2. 訂購完成！
+      </div>
+    </div>    
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-8">
+      <h2 class="text-center mb-3">訂單明細 </h2>
+      <table class="table">
+        <thead>
+          <th>商品名稱</th>
+          <th>數量</th>
+          <th class="align-middle text-right">價格</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="align-middle">金牌西裝</td>
+            <td class="align-middle">1 件</td>
+            <td class="align-middle text-right">$520.00</td>
+          </tr>
+          <tr>
+            <td class="align-middle">神秘披風</td>
+            <td class="align-middle">1 件</td>
+            <td class="align-middle text-right">$630.00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" class="align-middle text-right">運費：</td>
+            <td class="align-middle text-right">60.00</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="align-middle text-right border-0">總額：</td>
+            <td class="align-middle text-right border-0">$1150.00</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="mt-5">
+        <h2 class="text-center mb-3">買家資料</h2>
+        <table class="table order-info text-center">
+          <tbody>
+            <tr>
+              <th class="text-right">信箱：</th>
+              <td>aaaaa87@gmail.com</td>
+            </tr>
+            <tr>
+              <th class="text-right">姓名：</th>
+              <td>王大明</td>
+            </tr>
+            <tr>
+              <th class="text-right">電話：</th>
+              <td>0912345678</td>
+            </tr>
+            <tr>
+              <th class="text-right">地址：</th>
+              <td>高潭市高潭區小丑路33號</td>
+            </tr>
+            <tr>
+              <th class="text-right">運送方式：</th>
+              <td>貨到付款</td>
+            </tr>
+          </tbody>
+        </table>        
+      </div>
+      <div class="text-center">
+        <a href="/" class="btn btn-warning">繼續逛逛</a>
+      </div>      
+    </div>
+</section>
+
+<%- include('partials/footer') -%>

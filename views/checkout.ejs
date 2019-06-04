@@ -1,20 +1,15 @@
 <%- include('partials/header') -%>
 <section class="container py-5">
   <h1 class="text-center text-secondary mb-3">結帳</h1>
-  <div class="form-row text-center">
+  <div class="form-row text-center justify-content-center">
     <div class="col-12 col-sm-4">
       <div class="alert alert-primary rounded-pill">
-        1. 輸入訂單資料
+        1. 填寫訂單資料
       </div>
     </div>
     <div class="col-12 col-sm-4">
       <div class="alert alert-secondary rounded-pill">
-        2. 確認訂單資料
-      </div>
-    </div>
-    <div class="col-12 col-sm-4">
-      <div class="alert alert-secondary rounded-pill">
-        3. 付款完成
+        2. 訂購完成！
       </div>
     </div>
   </div>
@@ -58,7 +53,7 @@
         </table>
       </div>
 
-      <form class="mt-5">
+      <form class="mt-5" action="checkout/confirm" method="POST">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="lastname">姓氏</label>
@@ -113,8 +108,8 @@
         <ul style="list-style: none;">
           <li>貨到付款</li>
         </ul>
+        <input type="submit" class="btn btn-warning text-muted btn-block" value="送出訂單">
       </form>
-      <a href="/users/confirm" class="btn btn-warning text-muted btn-block">下一步</a>
     </div>
   </div>
 </section>
@@ -131,7 +126,7 @@
       }).done(function(res) {
         let str = '<option>--鄉鎮市區--</option>';
         res['data'].forEach((item) => { 
-          str+= '<option>' + item + '</option>'; 
+          str+= '<option>' + item + '</option>';
         });
         $('#inputState').html(str);
       });

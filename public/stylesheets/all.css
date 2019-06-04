@@ -247,3 +247,14 @@
 .cart-delete:hover {
   color: rgb(235, 57, 57);
 }
+
+.order-info {
+  border: 3px solid grey;
+  border-radius: 50% !important;
+}
+
+.order-info tr, .order-info td, .order-info th {
+  border: none !important;
+  font-size: 1.2rem;
+  line-height: 40px;
+}
