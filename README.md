@@ -15,4 +15,4 @@ npm start
 link: 
 
 # Copyright and license
-Code released under the MIT license.
+Code released under the [MIT license](https://github.com/a7711555/pet_eshop/blob/master/LICENSE).
