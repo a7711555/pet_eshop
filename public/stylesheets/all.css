@@ -250,7 +250,6 @@
 
 .order-info {
   border: 3px solid grey;
-  border-radius: 50% !important;
 }
 
 .order-info tr, .order-info td, .order-info th {

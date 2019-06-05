@@ -3,7 +3,7 @@ const router = express.Router();
 const area_data = require('../models/area_data');
 
 router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+  res.render('user');
 });
 
 router.get('/checkout', function (req, res) {
