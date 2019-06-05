@@ -257,3 +257,19 @@
   font-size: 1.2rem;
   line-height: 40px;
 }
+
+/* user center */
+
+.user-record {
+  height: 400px;
+  overflow: scroll;
+}
+
+.user-list {
+  list-style: none;
+  line-height: 40px;
+}
+
+.user-list li a{
+  text-decoration: none;
+}

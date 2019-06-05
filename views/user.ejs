@@ -1,0 +1,158 @@
+<%- include('partials/header') -%>
+<section class="container">
+  <div class="row flex-row-reverse">
+    <div class="col-md-4">
+      <div class="border border-info rounded-top">
+        <h4 class="w-100 bg-info text-white text-center p-2">個人資料管理</h4>
+        <ul class="user-list">
+          <li>
+            <a href="" data-toggle="modal" data-target="#userInfo">帳號資料</a>
+          </li>
+          <li>
+            <a href="" data-toggle="modal" data-target="#changepwd">修改密碼</a>
+          </li>
+          <li>
+            <a href="/logout">用戶登出</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8 mb-2">
+      <div class="border border-info">
+        <h4 class="text-center bg-info text-white p-2">訂單紀錄</h4>
+        <div class="user-record jusitfy-content-center">
+          <table class="table table-responsive-md text-center">
+            <thead>
+              <th width="150">訂單序號</th>
+              <th width="100">日期</th>
+              <th>狀態</th>
+              <th>付款</th>
+              <th>詳細</th>
+              <th>總額</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>fjdksljfklajfklsadjfsad</td>
+                <td>2019/06/05</td>
+                <td>出貨中</td>
+                <td>貨到付款</td>
+                <td><a href="" data-toggle="modal" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
+                <td>$500</td>
+              </tr>
+              <tr>
+                <td>fjdksljfklajfklsadjfsad</td>
+                <td>2019/06/05</td>
+                <td>出貨中</td>
+                <td>貨到付款</td>
+                <td><a href="" data-toggle="modal" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
+                <td>$500</td>
+              </tr>
+              <tr>
+                <td>fjdksljfklajfklsadjfsad</td>
+                <td>2019/06/05</td>
+                <td>出貨中</td>
+                <td>貨到付款</td>
+                <td><a href="" data-toggle="modal" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
+                <td>$500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- account info modal -->
+<div class="modal fade" id="userInfo" tabindex="-1" role="dialog" aria-labelledby="userInfo" aria-hidden="true">
+  <div class="modal-dialog jusitfy-content-center align-items-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">帳號資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th class="border-0">暱稱</th>
+              <td class="border-0">Tony</td>
+            </tr>
+            <tr>
+              <th>電子信箱</th>
+              <td>tony789@mail.com</td>
+            </tr>
+            <tr>
+              <th>電話</th>
+              <td>0912345678</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">儲存修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- account info modal -->
+<div class="modal fade" id="changepwd" tabindex="-1" role="dialog" aria-labelledby="changepwd" aria-hidden="true">
+  <div class="modal-dialog jusitfy-content-center align-items-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">修改密碼</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" action="" method="POST" data-toggle="validator">
+          <div class="col form-group">
+            <input type="password" class="form-control rounded" id="userpwd" placeholder="*密碼（8-12 字英數）" name="userpwd"
+              pattern="^(?!.*[^a-zA-Z0-9])(?=.*\d)(?=.*[a-zA-Z]).{8,12}$" data-error="請填入格式為 8-12 字英數密碼 （至少含一英文字母）"
+              required>
+            <small class="text-left help-block with-errors text-danger"></small>
+          </div>
+          <div class="col form-group">
+            <input type="password" class="form-control rounded" id="pwdconfirm" placeholder="*請再次輸入密碼" name="pwdconfirm"
+              data-match="#userpwd" data-error="請再次輸入密碼" required>
+            <small class="text-left help-block with-errors text-danger"></small>
+          </div>
+          <div class="text-center">
+            <input class="col-6 btn btn-primary jusitfy-content-center" type="submit" value="確認送出">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- details modal -->
+<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="changepwd" aria-hidden="true">
+  <div class="modal-dialog jusitfy-content-center align-items-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">購物明細</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body jusitfy-content-center">
+        <table class="table table-responsive-md text-center">
+          <thead>
+            <th width="200">品名</th>
+            <th>數量</th>
+            <th>單價</th>
+            <th>總額</th>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%>
+<script src="javascripts/validator.min.js"></script>
