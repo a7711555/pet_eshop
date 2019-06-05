@@ -71,49 +71,24 @@
     精選商品
   </div>
   <div class="row">
+    <% indexItem.forEach((item) => { %>
     <div class="col-md-4">
       <div class="item-card mb-4">
-        <div class="item-image bg-cover" style="background-image: url(images/product_2.jpg)">
-          <div class="item-tag">最新進貨</div>
+        <div class="item-image bg-cover" style="background-image: url(<%- item.img %>)">
+          <% if(item.tag) { %>
+            <div class="item-tag"><%- item.tag %></div>
+          <% } %>          
         </div>
         <div class="item-body d-flex text-center">
-          <div class="item-name col">好吃懶骨頭</div>
-          <strong class="item-price col">$ 450</strong>
+          <div class="item-name col"><%- item.name %></div>
+          <strong class="item-price col">$ <%- item.price %></strong>
         </div>
         <a href="#" class="btn-lg cart-btn btn btn-block">
           加入購物車
         </a>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="item-card mb-4">
-        <div class="item-image bg-cover" style="background-image: url(images/product_3.jpg)">
-          <div class="item-tag">暢銷商品</div>
-        </div>
-        <div class="item-body d-flex text-center">
-          <div class="item-name col">健康狗糧</div>
-          <strong class="item-price col">$ 450</strong>
-        </div>
-        <a href="#" class="btn-lg cart-btn btn btn-block">
-          加入購物車
-        </a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="item-card mb-4">
-        <div class="item-image bg-cover" style="background-image: url(images/product_1.jpg)">
-          <div class="item-tag">創意商品</div>
-        </div>
-        <div class="item-body d-flex text-center">
-          <div class="item-name col">寵物冰淇淋</div>
-          <strong class="item-price col">$ 450</strong>
-        </div>
-        <a href="#" class="btn-lg cart-btn btn btn-block">
-          加入購物車
-        </a>
-      </div>
-    </div>
-  </div>
+    <% }); %>
 </section>
 
 <%- include('partials/footer') -%>
