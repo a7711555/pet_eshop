@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const firedb = require('../models/firebaseAdmin');
+const fireDb = require('../models/firebaseAdmin');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+
   res.render('index');
 });
 
