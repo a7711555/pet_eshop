@@ -9,85 +9,47 @@
     <div class="col-md-4 mb-4">
       <div class="m-0 py-3 text-center bg-secondary text-white h4">商品類別</div>
       <div class="list-group text-center list-group-flush ">
-        <a href="/prodcuts" class="list-group-item list-group-item-action list-group-item-warning h4 active">
+        <a href="/products" class="list-group-item list-group-item-action list-group-item-warning h4 <% if(category === 'all') {%> active <% } %>">
           所有商品
         </a>
-        <a href="/products/dogs" class="list-group-item list-group-item-action list-group-item-warning h4">狗狗伙食</a>
-        <a href="/products/cats" class="list-group-item list-group-item-action list-group-item-warning h4">貓咪伙食</a>
-        <a href="/products/toys" class="list-group-item list-group-item-action list-group-item-warning h4">趣味玩具</a>
+        <a href="/products/dogs" class="list-group-item list-group-item-action list-group-item-warning h4 <% if(category === 'dogs') {%> active <% } %>">狗狗伙食</a>
+        <a href="/products/cats" class="list-group-item list-group-item-action list-group-item-warning h4 <% if(category === 'cats') {%> active <% } %>">貓咪伙食</a>
+        <a href="/products/toys" class="list-group-item list-group-item-action list-group-item-warning h4 <% if(category === 'toys') {%> active <% } %>">趣味玩具</a>
       </div>
     </div>
     <div class="col-md-8">
       <div class="row">
+        <% data.forEach(item => { %>
         <div class="col-md-6 mb-5">
           <div class="item-card mb-4">
-            <div class="item-image bg-cover" style="background-image: url(/images/product_1.jpg)">
-              <div class="item-tag">創意商品</div>
+            <div class="item-image bg-cover" style="background-image: url(<%- item.img %>)">
+              <% if(item.tag) { %>
+              <div class="item-tag"><%- item.tag %></div>
+              <% } %>
             </div>
             <div class="item-body d-flex text-center">
-              <div class="item-name col">寵物冰淇淋</div>
-              <strong class="item-price col">$ 450</strong>
+              <div class="item-name col"><%- item.name %></div>
+              <strong class="item-price col">$ <%- item.price %></strong>
             </div>
-            <a href="#" class="btn-lg cart-btn btn btn-block">
+            <a href="#" data-id="<%- item.id %>" class="btn-lg cart-btn btn btn-block">
               加入購物車
             </a>
           </div>
         </div>
-        <div class="col-md-6 mb-5">
-          <div class="item-card mb-4">
-            <div class="item-image bg-cover" style="background-image: url(images/product_1.jpg)">
-              <div class="item-tag">創意商品</div>
-            </div>
-            <div class="item-body d-flex text-center">
-              <div class="item-name col">寵物冰淇淋</div>
-              <strong class="item-price col">$ 450</strong>
-            </div>
-            <a href="#" class="btn-lg cart-btn btn btn-block">
-              加入購物車
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6 mb-5">
-          <div class="item-card mb-4">
-            <div class="item-image bg-cover" style="background-image: url(images/product_1.jpg)">
-              <div class="item-tag">創意商品</div>
-            </div>
-            <div class="item-body d-flex text-center">
-              <div class="item-name col">寵物冰淇淋</div>
-              <strong class="item-price col">$ 450</strong>
-            </div>
-            <a href="#" class="btn-lg cart-btn btn btn-block">
-              加入購物車
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6 mb-5">
-          <div class="item-card mb-4">
-            <div class="item-image bg-cover" style="background-image: url(images/product_1.jpg)">
-              <div class="item-tag">創意商品</div>
-            </div>
-            <div class="item-body d-flex text-center">
-              <div class="item-name col">寵物冰淇淋</div>
-              <strong class="item-price col">$ 450</strong>
-            </div>
-            <a href="#" class="btn-lg cart-btn btn btn-block">
-              加入購物車
-            </a>
-          </div>
-        </div>
+        <% }); %>
       </div>
       <nav aria-label="Page navigation example">
-        <ul class="pagination pagination-lg justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+        <ul class="pagination pagination-lg justify-content-center">          
+          <li class="page-item <% if(!pageInfo.hasPre) {%> disabled <% } %>">
+            <a class="page-link" href="?page=<%- pageInfo.pageCurrent - 1 %>" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+          <% for(let page = 1; page <= pageInfo.totalPage; page++) { %>
+          <li class="page-item <% if(page == pageInfo.pageCurrent) { %> active <% } %>"><a class="page-link" href="?page=<%-page%>"><%-page%></a></li>
+          <% } %>
+          <li class="page-item <% if(!pageInfo.hasNext) {%> disabled <% } %>">
+            <a class="page-link" href="?page=<%- parseInt(pageInfo.pageCurrent) + 1 %>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
