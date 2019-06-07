@@ -6,20 +6,20 @@
     <div class="col-md-10">
       <div class="row no-gutter">
         <div class="col-4 index-submenu bg-cover" style="background-image: url(images/index_submenu_cat.jpg);">
-          <a href="#" class="index-submenu-item">
+          <a href="/products/cats" class="index-submenu-item">
             <span class="submenu-title">找貓食</span>
             <div class="submenu-mask"></div>
           </a>
         </div>
         <div class="col-4 index-submenu bg-cover" style="background-image: url(images/index_submenu_dog.jpg);">
-          <a href="#" class="index-submenu-item">
+          <a href="/products/dogs" class="index-submenu-item">
             <span class="submenu-title">找狗食</span>
             <div class="submenu-mask"></div>
           </a>
         </div>
         <div class="col-4 index-submenu bg-cover"
           style="background-image: url(images/index_submenu_toy.jpg); border:none;">
-          <a href="#" class="index-submenu-item">
+          <a href="/products/toys" class="index-submenu-item">
             <span class="submenu-title">找玩具</span>
             <div class="submenu-mask"></div>
           </a>
@@ -83,7 +83,7 @@
           <div class="item-name col"><%- item.name %></div>
           <strong class="item-price col">$ <%- item.price %></strong>
         </div>
-        <a href="#" class="btn-lg cart-btn btn btn-block">
+        <a href="#" class="btn-lg cart-btn btn btn-block" data-id="<%- item.id %>">
           加入購物車
         </a>
       </div>
