@@ -29,37 +29,18 @@
       </a>
       <div class="dropdown ">
         <button class="btn btn-sm cart" data-toggle="dropdown" data-flip="false">
-          <i class="fas fa-shopping-cart text-dark fa-2x"></i><span class="badge badge-pill badge-danger">13</span>
+          <i class="fas fa-shopping-cart text-dark fa-2x"></i><span id="shopcart-qty" class="badge badge-pill badge-danger">999</span>
         </button>
         <div class="dropdown-menu p-0" style="min-width: 350px;">
-          <div class="p-4">
+          <div class="px-4 pt-4">
             <h6>已選擇商品</h6>
             <table class="table">
-              <tbody>
-                <tr>
-                  <td class="align-middle text-center">
-                    <a href="#removeModal" class="text-muted" data-toggle="modal">
-                      <i class="fas fa-trash-alt"></i>
-                    </a>
-                  </td>
-                  <td class="align-middle">金牌西裝</td>
-                  <td class="align-middle">1 件</td>
-                  <td class="align-middle text-right">$520.00</td>
-                </tr>
-                <tr>
-                  <td class="align-middle text-center">
-                    <a href="#removeModal" class="text-muted" data-toggle="modal">
-                      <i class="fas fa-trash-alt"></i>
-                    </a>
-                  </td>
-                  <td class="align-middle">神秘披風</td>
-                  <td class="align-middle">1 件</td>
-                  <td class="align-middle text-right">$630.00</td>
-                </tr>
+              <tbody id="header-shopcart">
+                
               </tbody>
             </table>            
           </div>
-          <a href="/cart" class="btn btn-primary btn-block rounded-0 mb-0">結帳去</a>
+          <a href="/cart" class="btn btn-secondary btn-block rounded-0 mt-0">結帳去</a>
         </div>
       </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
