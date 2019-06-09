@@ -270,6 +270,14 @@
   line-height: 40px;
 }
 
-.user-list li a{
+.user-list li a {
   text-decoration: none;
+  color: #999 !important;
+}
+
+.alert-msg {
+  position: fixed !important;
+  display: none;
+  bottom: 50%;
+  right: 50%;
 }

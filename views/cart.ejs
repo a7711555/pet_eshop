@@ -5,38 +5,7 @@
       <div class="index-bg-primary py-4 h4 text-center">
         選購商品
       </div>
-      <section class="container">
-
-        <div class="row cart-item align-items-center">
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-2 d-flex justify-content-center align-items-center">
-                <a href="#">
-                  <i class="fas fa-trash-alt cart-delete"></i>
-                </a>
-              </div>
-              <div class="col">
-                <img src="images/product_4.jpg" alt="" class="img-fluid">
-              </div>
-              <div class="col">
-                <p class="h4">通心麵</p>
-                <p class="h5 text-muted">$450</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5 d-flex justify-content-end align-items-center">
-            <div class="row">
-              <div class="col-6 d-flex flex-row align-items-center">
-                <button class="btn btn-light btn-sm">-</button>
-                <span class="mx-2">1</span>
-                <button class="btn btn-light btn-sm">+</button>
-              </div>
-              <div class="col-6 d-flex align-items-center justify-content-end pr-0">
-                $5000
-              </div>
-            </div>            
-          </div>
-        </div>
+      <section id="cart-container" class="container">       
 
       </section>
     </div>
@@ -44,18 +13,9 @@
       <div class="p-3 py-3 pt-0 cart-msg-box cart-detail">
         <h2 class="text-center index-bg-primary h4 py-3">訂單摘要</h2>
         <hr class="border-white mt-0">
-        <div class="d-flex justify-content-between mb-2">
-          <span>小計</span>
-          <span>NT$ 2,700</span>
-        </div>
-        <div class="d-flex justify-content-between mb-3">
-          <span>運費</span>
-          <span>NT$ 300</span>
-        </div>
-        <div class="d-flex justify-content-between">
-          <span class="h5">總計</span>
-          <span class="h5">NT$ 3000</span>
-        </div>
+        <div class="order-summary">
+          
+        </div>        
       </div>
       <div class="negative-row-margin mx-md-0">
         <a href="/users/checkout" class="btn btn-checkout btn-block btn-lg py-3 rounded-0">填寫資料</a>
@@ -68,3 +28,114 @@
 </section>
 
 <%- include('partials/footer') -%>
+<script>
+  $(document).ready(function() {
+    // screen initialize
+    $('.cart').remove();
+    cartContentGenerator(shopCartData);
+
+    // delete item
+    $('#cart-container').on('click', '.remove-item', function(e) {
+      e.preventDefault();
+      if(confirm('確認刪除商品？')) {
+        const productId = $(this).data('id');
+        for (let i = 0; i < shopCartData.length; i++) {
+          if (shopCartData[i].id === productId) {
+            shopCartData.splice(i, 1);
+            break;
+          }
+        }
+        document.cookie = "shopcart=" + JSON.stringify(shopCartData) + ';path=/';
+        cartContentGenerator(shopCartData);
+      }      
+    });
+
+
+    // add quantity control
+    $('#cart-container').on('click', '.btn-qty', function () {
+      const self = $(this);
+      const productId = self.data('id');
+      // add
+      if(self.html() === '+') {
+        for (let i = 0; i < shopCartData.length; i++) {
+          if (shopCartData[i].id === productId) {
+            shopCartData[i].qty++;
+            break;
+          }
+        }
+      }
+      // sub
+      if(self.html() === '-') {
+        for (let i = 0; i < shopCartData.length; i++) {
+          if (shopCartData[i].id === productId) {
+            if(shopCartData[i].qty > 1) {
+              shopCartData[i].qty--;
+            }
+            break;
+          }
+        }
+      }
+      document.cookie = "shopcart=" + JSON.stringify(shopCartData) + ';path=/';
+      cartContentGenerator(shopCartData);
+    });
+  });
+
+  // shopping cart page content generating function
+  function cartContentGenerator(arr) {
+    let containHtml = '';
+    let orderSum = 0;
+    if (arr.length > 0) {
+      arr.forEach(item => {
+        containHtml += `
+        <div class="row cart-item align-items-center">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <a href="#" class="remove-item" data-id="${item.id}">
+                  <i class="fas fa-trash-alt cart-delete"></i>
+                </a>
+              </div>
+              <div class="col">
+                <img src="${item.img}" alt="" class="img-fluid">
+              </div>
+              <div class="col">
+                <p class="h4">${item.name}</p>
+                <p class="h5 text-muted">$${item.price}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end align-items-center">
+            <div class="row">
+              <div class="col-6 d-flex flex-row align-items-center">
+                <button class="btn btn-light btn-sm btn-qty" data-id="${item.id}">-</button>
+                <span class="mx-2">${item.qty}</span>
+                <button class="btn btn-light btn-sm btn-qty" data-id="${item.id}">+</button>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end pr-0">
+                $ ${item.price * item.qty}
+              </div>
+            </div>            
+          </div>
+        </div>`;
+        orderSum += item.price * item.qty;
+      });
+    } else {
+      containHtml = '<h4>購物車是空的喔！</h4><a href="/products">快去買</a>';
+    }
+    $('#cart-container').html(containHtml);
+    $('.order-summary').html(`
+      <div class="d-flex justify-content-between mb-2">
+          <span>小計</span>
+          <span>NT$ ${orderSum}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span>運費</span>
+          <span>NT$ 100</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="h5">總計</span>
+          <span class="h5">NT$ ${orderSum + 100}</span>
+      </div>`
+    );
+  }
+</script>
