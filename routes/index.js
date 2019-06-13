@@ -3,9 +3,9 @@ const router = express.Router();
 const getIndex = require('../contorllers/index/getIndex_controller');
 const registerController = require('../contorllers/index/register_controller');
 const loginController = require('../contorllers/index/login_controller');
+const logoutController = require('../contorllers/index/logout_controller');
 
-
-/* GET home page. */
+/* GET home page. */ 
 router.get('/', getIndex);
 
 // register router
@@ -19,6 +19,8 @@ router.get('/login', function (req, res) {
   });
 });
 router.post('/login/verify', loginController);
+
+router.get('/logout', logoutController);
 
 router.get('/cart', function (req, res) {
   res.render('cart');

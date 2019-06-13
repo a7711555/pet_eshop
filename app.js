@@ -27,10 +27,14 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(flash());
+app.use(function(req, res, next) {
+  res.locals.username = req.session.username;
+  next();
+});
 
 const authCheck = function(req, res, next) {
-  console.log('middleware', req.session);
   if(req.session.uid) {
+    res.locals.username = req.session.username;
     next();
   }
   res.redirect('/login');
