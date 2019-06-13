@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const getIndex = require('../contorllers/index/getIndex_controller');
 const registerController = require('../contorllers/index/register_controller');
+const loginController = require('../contorllers/index/login_controller');
 
 
 /* GET home page. */
@@ -13,8 +14,11 @@ router.get('/register', register.registerPage);
 router.post('/register/post', register.poster);
 
 router.get('/login', function (req, res) {
-  res.render('login');
+  res.render('login', {
+    msg: req.flash('error'),
+  });
 });
+router.post('/login/verify', loginController);
 
 router.get('/cart', function (req, res) {
   res.render('cart');

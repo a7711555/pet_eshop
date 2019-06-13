@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
-const csrf = require('csurf');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -28,11 +27,18 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(flash());
-app.use(csrf());
+
+const authCheck = function(req, res, next) {
+  console.log('middleware', req.session);
+  if(req.session.uid) {
+    next();
+  }
+  res.redirect('/login');
+} 
 
 // routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', authCheck, usersRouter);
 app.use('/products', productRouter);
 
 // catch 404 and forward to error handler

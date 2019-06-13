@@ -6,8 +6,13 @@
       style="background-image: url(images/login_cover.jpg); filter:blur(1px);"></div>
     <div class="col-md-6 vh100 d-flex justify-content-center align-items-center bg-light">
       <form class="w-75" method="POST" action="login/verify">
-        <div class="h1 text-center mb-5">登入會員</div>
-        <div class="form-group position-relative">
+        <div class="h1 text-center ">登入會員</div>
+        <% if(msg.length > 0) { %>
+        <div class="text-danger text-center" role="alert">
+          <%= msg %>
+        </div>
+        <% } %>
+        <div class="form-group position-relative mt-5">
           <input type="email" class="form-control rounded-0 login-input" name="email" id="email"
             aria-describedby="emailHelp" placeholder="">
           <label class="login-label">請輸入註冊的電子信箱</label>
@@ -24,7 +29,7 @@
           <small class="d-none">
             <a id="forgetPwd" href="#">忘記密碼？</a>
           </small>
-        </div>
+        </div>        
         <button type="submit" class="btn btn-login btn-lg text-light w-100 rounded-0 mt-3">登入帳號</button>
       </form>
     </div>
