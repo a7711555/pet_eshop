@@ -16,13 +16,13 @@ $(document).ready(function () {
 
     if (shopCartData.length === 0) {
       shopCartData.push(product);
-      showAlert();
+      showAlert(product.name);
     } else {
       let counter = 0;
       while (counter < shopCartData.length) {
         if (shopCartData[counter].id === product.id) {
           shopCartData[counter].qty++;
-          showAlert();
+          showAlert(product.name);
           break;
         }
         counter++
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
       if (counter === shopCartData.length) {
         shopCartData.push(product);    
-        showAlert();
+        showAlert(product.name);
       }
     }    
     document.cookie = "shopcart=" + JSON.stringify(shopCartData) + ';path=/';
@@ -89,7 +89,6 @@ function generateCartContent(cartArr) {
   $('#header-shopcart').html(cartHtml);
 }
 
-function showAlert() {
-  $('.alert-msg').show().fadeOut('1500');
-  $('.alert-msg').html('加入成功')
+function showAlert(name) {
+  $('.alert-msg').html(name + ' 加入成功').fadeIn(0).show().stop().fadeOut(1000);
 }
