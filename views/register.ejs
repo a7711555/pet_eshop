@@ -16,22 +16,29 @@
         </div>
       </div>
       <div class="col-md-6">
+        <% if(msg.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= msg %>
+        </div>
+        <% } %>
         <div class="text-left pl-3">
           <small class="text-warning text-left w-100">*為必填項目</small>
         </div>
-        <form class="needs-validation"  action="" method="POST" data-toggle="validator">
+        <form class="needs-validation" action="/register/post" method="POST" data-toggle="validator">
           <div class="col mt-1 form-group">
-            <input type="text" class="form-control rounded" id="username" placeholder="*您的稱呼（6 字以內）" name="username" maxlength="6" data-error="請填入暱稱" required>
+            <input type="text" class="form-control rounded" id="username" placeholder="*您的稱呼（6 字以內）" name="username"
+              maxlength="6" data-error="請填入暱稱" required>
             <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <div class="col form-group">
-            <input type="email" class="form-control rounded" id="email" placeholder="*電子信箱" name="email" data-error="請填入正確電子信箱地址" required>
+            <input type="email" class="form-control rounded" id="email" placeholder="*電子信箱" name="email"
+              data-error="請填入正確電子信箱地址" required>
             <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <div class="col form-group">
             <input type="password" class="form-control rounded" id="userpwd" placeholder="*密碼（8-12 字英數）" name="userpwd"
-              pattern="^(?!.*[^a-zA-Z0-9])(?=.*\d)(?=.*[a-zA-Z]).{8,12}$" data-error="請填入格式為 8-12 字英數密碼 （至少含一英文字母）" required>
-              <small class="text-left help-block with-errors text-danger"></small>
+              pattern="^(?=.*\d)(?=.*[a-zA-Z]).{8,12}$" data-error="請填入格式為 8-12 字英數密碼 （至少含一英文字母）" required>
+            <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <div class="col form-group">
             <input type="password" class="form-control rounded" id="pwdconfirm" placeholder="*請再次輸入密碼" name="pwdconfirm"
@@ -39,7 +46,8 @@
             <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <div class="col form-group">
-            <input type="text" class="form-control rounded" id="phone" placeholder="*手機號碼" name="phone" maxlength="10" pattern="[\d]{10}$" data-error="請填入您的手機號碼" data-pattern-error="請填入正確格式" required>
+            <input type="text" class="form-control rounded" id="phone" placeholder="*手機號碼" name="phone" maxlength="10"
+              pattern="^09[\d]{8}$" data-error="請填入您的手機號碼" data-pattern-error="請填入正確格式" required>
             <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <input class="col-6 btn btn-register" type="submit" value="確認送出">
