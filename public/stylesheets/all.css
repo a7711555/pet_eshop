@@ -278,6 +278,6 @@
 .alert-msg {
   position: fixed !important;
   display: none;
-  bottom: 50%;
-  right: 50%;
+  bottom: 15px;
+  right: 15px;
 }
