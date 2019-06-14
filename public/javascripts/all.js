@@ -92,3 +92,7 @@ function generateCartContent(cartArr) {
 function showAlert(name) {
   $('.alert-msg').html(name + ' 加入成功').fadeIn(0).show().stop().fadeOut(1000);
 }
+
+function hideShoppingCart() {
+  $('.cart').remove();
+}

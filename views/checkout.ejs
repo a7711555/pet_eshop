@@ -118,6 +118,8 @@
 
 <script>
   $(document).ready(function () {
+    hideShoppingCart();
+
     $('#inputCity').on('change', function () {
       const encodeData = window.btoa(encodeURIComponent($(this).val()));
       $.ajax({
