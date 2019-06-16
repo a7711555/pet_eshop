@@ -59,11 +59,15 @@ module.exports = class order {
     let total = 0;
     const uid = req.session.uid;
     const shoppingList = req.session.shopcart;
-    const orderPush = orderRef.push();
-    const orderTime = Math.floor(Date.now() / 1000);
+    const orderPush = orderRef.child(uid).push();
+    const orderTime = Date.now();
     let orderInfo = {};
 
     usersDb(uid).then(snap => {
+      shoppingList.forEach(item => {
+        total += item.qty * item.price
+      });
+
       orderInfo = {
         orderId: orderPush.key,
         email: snap.val().email,
@@ -75,11 +79,10 @@ module.exports = class order {
         status: '處理中',
         freightPrice: 60,
         order_time: orderTime,
-        shoppingList: shoppingList
+        shoppingList: shoppingList,
+        totalPrice: total
       }
-      shoppingList.forEach(item => {
-        total += item.qty * item.price
-      });
+      
       return orderPush.set(orderInfo);      
     }).then(() => {
       res.clearCookie('shopcart');
