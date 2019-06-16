@@ -42,7 +42,7 @@ const authCheck = function(req, res, next) {
 
 // routers
 app.use('/', indexRouter);
-app.use('/user', usersRouter);
+app.use('/user',authCheck ,usersRouter);
 app.use('/products', productRouter);
 
 // catch 404 and forward to error handler

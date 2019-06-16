@@ -23,7 +23,7 @@
         <div class="user-record jusitfy-content-center">
           <table class="table table-responsive-md text-center">
             <thead>
-              <th width="150">訂單序號</th>
+              <th width="300">訂單序號</th>
               <th width="100">日期</th>
               <th>狀態</th>
               <th>付款</th>
@@ -31,30 +31,16 @@
               <th>總額</th>
             </thead>
             <tbody>
+              <% shoppingHistory.forEach(item => { %>
               <tr>
-                <td>fjdksljfklajfklsadjfsad</td>
-                <td>2019/06/05</td>
-                <td>出貨中</td>
-                <td>貨到付款</td>
-                <td><a href="" data-toggle="modal" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
-                <td>$500</td>
+                <td><%- item.orderId %></td>
+                <td><%- moment(item.orderTime).format('YYYY/MM/DD') %></td>
+                <td><%- item.status %></td>
+                <td><%- item.freight %></td>
+                <td><a href="" class="order-detail" data-toggle="modal" data-id="<%- item.orderId %>" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
+                <td>$ <%- item.totalPrice + 60 %> </td>
               </tr>
-              <tr>
-                <td>fjdksljfklajfklsadjfsad</td>
-                <td>2019/06/05</td>
-                <td>出貨中</td>
-                <td>貨到付款</td>
-                <td><a href="" data-toggle="modal" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
-                <td>$500</td>
-              </tr>
-              <tr>
-                <td>fjdksljfklajfklsadjfsad</td>
-                <td>2019/06/05</td>
-                <td>出貨中</td>
-                <td>貨到付款</td>
-                <td><a href="" data-toggle="modal" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
-                <td>$500</td>
-              </tr>
+              <% }); %>
             </tbody>
           </table>
         </div>
@@ -78,15 +64,15 @@
           <tbody>
             <tr>
               <th class="border-0">暱稱</th>
-              <td class="border-0">Tony</td>
+              <td class="border-0"><%- userInfo.username %></td>
             </tr>
             <tr>
               <th>電子信箱</th>
-              <td>tony789@mail.com</td>
+              <td><%- userInfo.email %></td>
             </tr>
             <tr>
               <th>電話</th>
-              <td>0912345678</td>
+              <td><%- userInfo.phone %></td>
             </tr>
           </tbody>
         </table>
@@ -148,7 +134,9 @@
             <th>單價</th>
             <th>總額</th>
           </thead>
-          <tbody></tbody>
+          <tbody id="order-detail-list">
+            
+          </tbody>
         </table>
       </div>
     </div>
@@ -156,3 +144,35 @@
 </div>
 <%- include('partials/footer') -%>
 <script src="javascripts/validator.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.order-detail').on('click', function() {
+      const spinner = `
+      <div class="spinner-border mx-auto" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>`;
+      $('#order-detail-list').html(spinner);
+      const orderId = $(this).data('id');
+      $.ajax({
+        url: '/user/getOrderInfo/' + orderId,
+        method: 'POST'
+      }).done(function(res) {        
+        if(res.status) {
+          const datas = res.data;
+          let content = '';
+          datas.forEach(item => {
+            content += `
+              <tr>
+                <td>${item.name}</td>
+                <td>${item.qty}</td>
+                <td>${item.price}</td>
+                <td>${item.qty * item.price}</td>
+              </tr>
+            `;
+          });
+          $('#order-detail-list').html(content);
+        }
+      });
+    });
+  });
+</script>

@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const userControllerClass = require('../contorllers/user/user_controller');
 const Checkout = require('../contorllers/user/order_contorllers');
 
-router.get('/', function (req, res, next) {
-  res.render('user');
-});
+const userController = new userControllerClass();
+router.get('/', userController.userPage);
+
+router.post('/getOrderInfo/:orderId', userController.getOrderInfo);
 
 const checkout = new Checkout();
-router.get('/checkout', checkout.checkout);
 
+router.get('/checkout', checkout.checkout);
 // area infomation api
 router.post('/checkout/data/:city', checkout.getAreaInfo);
 
