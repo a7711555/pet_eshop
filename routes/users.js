@@ -1,29 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const area_data = require('../models/area_data');
+const Checkout = require('../contorllers/user/order_contorllers');
 
 router.get('/', function (req, res, next) {
   res.render('user');
 });
 
-router.get('/checkout', function (req, res) {
-  res.render('checkout');
-});
+const checkout = new Checkout();
+router.get('/checkout', checkout.checkout);
 
 // area infomation api
-router.post('/checkout/data/:city', function (req, res) {
-  const city = req.param('city');
-  const citydecode = decodeURI(Buffer.from(city, 'base64').toString('utf8'));  
-  res.send({
-    sccuess: true,
-    data: area_data[citydecode],
-  });
-  res.end();
-});
+router.post('/checkout/data/:city', checkout.getAreaInfo);
 
 // get user info
-router.post('/checkout/confirm', function(req, res){
-  res.render('confirm');
-});
+router.post('/checkout/details', checkout.details);
 
 module.exports = router;

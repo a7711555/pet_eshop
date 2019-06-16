@@ -23,17 +23,13 @@
           <th class="align-middle text-right">價格</th>
         </thead>
         <tbody>
+         <% shoppingList.forEach(item => {%>
           <tr>
-            <td class="align-middle">金牌西裝</td>
-            <td class="align-middle">1 件</td>
-            <td class="align-middle text-right">$520.00</td>
+            <td class="align-middle"><%- item.name %></td>
+            <td class="align-middle"><%- item.qty %></td>
+            <td class="align-middle text-right">$<%- item.qty * item.price %></td>
           </tr>
-          <tr>
-            <td class="align-middle">神秘披風</td>
-            <td class="align-middle">1 件</td>
-            <td class="align-middle text-right">$630.00</td>
-          </tr>
-        </tbody>
+          <% }); %>
         <tfoot>
           <tr>
             <td colspan="2" class="align-middle text-right">運費：</td>
@@ -41,7 +37,7 @@
           </tr>
           <tr>
             <td colspan="2" class="align-middle text-right border-0">總額：</td>
-            <td class="align-middle text-right border-0">$1150.00</td>
+            <td class="align-middle text-right border-0">$ <%= total + 60 %> </td>
           </tr>
         </tfoot>
       </table>
@@ -50,24 +46,28 @@
         <table class="table order-info">
           <tbody>
             <tr>
+              <th class="text-right">訂單編號</th>
+              <td class="align-middle"><%- orderInfo.orderId %></td>
+            </tr>
+            <tr>
               <th class="text-right">信箱</th>
-              <td class="align-middle">aaaaa87@gmail.com</td>
+              <td class="align-middle"><%- orderInfo.email %></td>
             </tr>
             <tr>
               <th class="text-right">姓名</th>
-              <td class="align-middle">王大明</td>
+              <td class="align-middle"><%- orderInfo.customerName %></td>
             </tr>
             <tr>
               <th class="text-right">電話</th>
-              <td class="align-middle">0912345678</td>
+              <td class="align-middle"><%- orderInfo.phone %></td>
             </tr>
             <tr>
               <th class="text-right">地址</th>
-              <td class="align-middle">高潭市高潭區小丑路33號</td>
+              <td class="align-middle"><%- orderInfo.address %></td>
             </tr>
             <tr>
               <th class="text-right">運送方式</th>
-              <td class="align-middle">貨到付款</td>
+              <td class="align-middle"><%- orderInfo.freight %></td>
             </tr>
           </tbody>
         </table>        

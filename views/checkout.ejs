@@ -33,41 +33,42 @@
             <th class="align-middle text-right">價格</th>
           </thead>
           <tbody>
+            <% shoppingList.forEach(item => { %>
             <tr>
-              <td class="align-middle">金牌西裝</td>
-              <td class="align-middle">1 件</td>
-              <td class="align-middle text-right">$520.00</td>
+              <td class="align-middle"> <%- item.name %> </td>
+              <td class="align-middle"> <%- item.qty %> </td>
+              <td class="align-middle text-right">$ <%- item.price * item.qty %> </td>
             </tr>
-            <tr>
-              <td class="align-middle">神秘披風</td>
-              <td class="align-middle">1 件</td>
-              <td class="align-middle text-right">$630.00</td>
-            </tr>
+            <% }); %>
           </tbody>
           <tfoot>
-            <tr>
-              <td colspan="2" class="align-middle text-right">總額：</td>
-              <td class="align-middle text-right">$1150.00</td>
-            </tr>
-          </tfoot>
+          <tr>
+            <td colspan="2" class="align-middle text-right">運費：</td>
+            <td class="align-middle text-right">$60.00</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="align-middle text-right border-0">總額：</td>
+            <td class="align-middle text-right border-0">$ <%- totalPrice + 60 %> </td>
+          </tr>
+        </tfoot>
         </table>
       </div>
 
-      <form class="mt-5" action="checkout/confirm" method="POST">
+      <form class="mt-5" action="checkout/details" method="POST">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="lastname">姓氏</label>
-            <input type="text" class="form-control" id="lastname" placeholder="姓氏">
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="姓氏" maxlength="20" required>
           </div>
           <div class="form-group col-md-6">
             <label for="firstname">名字</label>
-            <input type="text" class="form-control" id="firstname" placeholder="名字">
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="名字" maxlength="20" required>
           </div>
         </div>
         <div class="form-row align-items-end">
           <div class="form-group col-md-6">
             <label for="inputAddress">運送地址</label>
-            <select id="inputCity" class="form-control">
+            <select id="inputCity" name="city" class="form-control" required>
               <option selected>--選擇縣市--</option>
               <option>臺北市</option>
               <option>新北市</option>
@@ -94,19 +95,19 @@
             </select>
           </div>
           <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
+            <select id="inputState" name="state" class="form-control" required>
               <option selected>--鄉鎮市區--</option>
 
             </select>
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="inputAddress" placeholder="輸入寄送地址">
+          <input type="text" class="form-control" id="inputAddress" name="address" placeholder="輸入寄送地址" maxlength="50" required>
         </div>
         <hr>
         <h3>付款方式</h3>
         <ul style="list-style: none;">
-          <li>貨到付款</li>
+          <li>貨到付款 $60 </li>
         </ul>
         <input type="submit" class="btn btn-warning text-muted btn-block" value="送出訂單">
       </form>
@@ -123,7 +124,7 @@
     $('#inputCity').on('change', function () {
       const encodeData = window.btoa(encodeURIComponent($(this).val()));
       $.ajax({
-        url: '/users/checkout/data/' + encodeData,
+        url: '/user/checkout/data/' + encodeData,
         method: 'POST'
       }).done(function(res) {
         let str = '<option>--鄉鎮市區--</option>';

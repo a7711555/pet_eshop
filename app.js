@@ -34,15 +34,15 @@ app.use(function(req, res, next) {
 
 const authCheck = function(req, res, next) {
   if(req.session.uid) {
-    res.locals.username = req.session.username;
     next();
+    return;
   }
   res.redirect('/login');
 } 
 
 // routers
 app.use('/', indexRouter);
-app.use('/users', authCheck, usersRouter);
+app.use('/user', usersRouter);
 app.use('/products', productRouter);
 
 // catch 404 and forward to error handler
