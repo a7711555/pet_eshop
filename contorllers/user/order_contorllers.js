@@ -72,6 +72,7 @@ module.exports = class order {
         phone: snap.val().phone,
         address: req.body.city + req.body.state + req.body.address.substring(0, 50),
         freight: '貨到付款',
+        status: '處理中',
         freightPrice: 60,
         order_time: orderTime,
         shoppingList: shoppingList
