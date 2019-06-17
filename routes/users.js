@@ -7,6 +7,7 @@ const userController = new userControllerClass();
 router.get('/', userController.userPage);
 
 router.post('/getOrderInfo/:orderId', userController.getOrderInfo);
+router.post('/updatePassword', userController.updatePassword);
 
 const checkout = new Checkout();
 

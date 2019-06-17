@@ -37,7 +37,8 @@
                 <td><%- moment(item.orderTime).format('YYYY/MM/DD') %></td>
                 <td><%- item.status %></td>
                 <td><%- item.freight %></td>
-                <td><a href="" class="order-detail" data-toggle="modal" data-id="<%- item.orderId %>" data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
+                <td><a href="" class="order-detail" data-toggle="modal" data-id="<%- item.orderId %>"
+                    data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
                 <td>$ <%- item.totalPrice + 60 %> </td>
               </tr>
               <% }); %>
@@ -77,9 +78,6 @@
           </tbody>
         </table>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">儲存修改</button>
-      </div>
     </div>
   </div>
 </div>
@@ -97,18 +95,17 @@
       <div class="modal-body">
         <form class="needs-validation" action="" method="POST" data-toggle="validator">
           <div class="col form-group">
-            <input type="password" class="form-control rounded" id="userpwd" placeholder="*密碼（8-12 字英數）" name="userpwd"
-              pattern="^(?=.*\d)(?=.*[a-zA-Z]).{8,12}$" data-error="請填入格式為 8-12 字英數密碼 （至少含一英文字母）"
-              required>
+            <input type="password" class="form-control rounded" id="newpwd" placeholder="*新密碼（8-12 字英數）"
+              pattern="^(?=.*\d)(?=.*[a-zA-Z]).{8,12}$" data-error="請填入格式為 8-12 字英數密碼 （至少含一英文字母）" required>
             <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <div class="col form-group">
-            <input type="password" class="form-control rounded" id="pwdconfirm" placeholder="*請再次輸入密碼" name="pwdconfirm"
-              data-match="#userpwd" data-error="請再次輸入密碼" required>
+            <input type="password" class="form-control rounded" id="pwdconfirm" placeholder="*請再次輸入密碼"
+              data-match="#newpwd" data-error="請再次輸入密碼" required>
             <small class="text-left help-block with-errors text-danger"></small>
           </div>
           <div class="text-center">
-            <input class="col-6 btn btn-primary jusitfy-content-center" type="submit" value="確認送出">
+            <input class="col-6 btn btn-primary jusitfy-content-center" id="sendPwd" type="submit" value="確認送出">
           </div>
         </form>
       </div>
@@ -135,7 +132,7 @@
             <th>總額</th>
           </thead>
           <tbody id="order-detail-list">
-            
+
           </tbody>
         </table>
       </div>
@@ -145,8 +142,9 @@
 <%- include('partials/footer') -%>
 <script src="javascripts/validator.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $('.order-detail').on('click', function() {
+  $(document).ready(function () {
+    $('.order-detail').on('click', function (e) {
+      e.preventDefault();
       const spinner = `
       <div class="spinner-border mx-auto" role="status">
           <span class="sr-only">Loading...</span>
@@ -156,8 +154,8 @@
       $.ajax({
         url: '/user/getOrderInfo/' + orderId,
         method: 'POST'
-      }).done(function(res) {        
-        if(res.status) {
+      }).done(function (res) {
+        if (res.status) {
           const datas = res.data;
           let content = '';
           datas.forEach(item => {
@@ -171,6 +169,22 @@
             `;
           });
           $('#order-detail-list').html(content);
+        }
+      });
+    });
+
+    $('#sendPwd').on('click', function (e) {
+      e.preventDefault();
+      const oldPwd = $('#oldpwd').val();
+      const newPwd = $('#newpwd').val();
+      const pwdConfirm = $('#pwdconfirm').val();
+      $.ajax({
+        url: '/user/updatePassword?oldpwd=' + oldPwd + '&newpwd=' + newPwd + '&pwdconfirm=' + pwdConfirm,
+        method: 'POST'
+      }).done(function (res) {
+        alert(res.msg);
+        if (res.status) {
+          location.reload();
         }
       });
     });
