@@ -17,7 +17,8 @@ module.exports = class user {
       res.render('user', {
         shoppingHistory,
         moment,
-        userInfo: snap.val()
+        userInfo: snap.val(),
+        csrfToken: req.csrfToken()
       });
     }).catch(err => {
 
@@ -48,11 +49,13 @@ module.exports = class user {
   updatePassword(req, res) {
     try {
       const user = firebase.auth().currentUser;
-      const oldPassword = req.query.oldpwd || '';
-      const newPassword = req.query.newpwd || '';
-      const pwdConfirm = req.query.pwdconfirm || '';
+      const encodeData = req.query.data;
+      const data = JSON.parse(decodeURI(encodeData));
+      console.log(data);
+      const newPassword = data.newPwd || '';
+      const pwdConfirm = data.pwdConfirm || '';
 
-      if(oldPassword.length === 0 || newPassword.length === 0 || pwdConfirm === 0) {
+      if(newPassword.length === 0 || pwdConfirm === 0) {
         res.send({
           status: false,
           msg: "欄位不可為空"

@@ -42,27 +42,30 @@
             <% }); %>
           </tbody>
           <tfoot>
-          <tr>
-            <td colspan="2" class="align-middle text-right">運費：</td>
-            <td class="align-middle text-right">$60.00</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="align-middle text-right border-0">總額：</td>
-            <td class="align-middle text-right border-0">$ <%- totalPrice + 60 %> </td>
-          </tr>
-        </tfoot>
+            <tr>
+              <td colspan="2" class="align-middle text-right">運費：</td>
+              <td class="align-middle text-right">$60.00</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="align-middle text-right border-0">總額：</td>
+              <td class="align-middle text-right border-0">$ <%- totalPrice + 60 %> </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
 
       <form class="mt-5" action="checkout/details" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="lastname">姓氏</label>
-            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="姓氏" maxlength="20" required>
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="姓氏" maxlength="20"
+              required>
           </div>
           <div class="form-group col-md-6">
             <label for="firstname">名字</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="名字" maxlength="20" required>
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="名字" maxlength="20"
+              required>
           </div>
         </div>
         <div class="form-row align-items-end">
@@ -102,7 +105,8 @@
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="inputAddress" name="address" placeholder="輸入寄送地址" maxlength="50" required>
+          <input type="text" class="form-control" id="inputAddress" name="address" placeholder="輸入寄送地址" maxlength="50"
+            required>
         </div>
         <hr>
         <h3>付款方式</h3>
@@ -126,10 +130,10 @@
       $.ajax({
         url: '/user/checkout/data/' + encodeData,
         method: 'POST'
-      }).done(function(res) {
+      }).done(function (res) {
         let str = '<option>--鄉鎮市區--</option>';
-        res['data'].forEach((item) => { 
-          str+= '<option>' + item + '</option>';
+        res['data'].forEach((item) => {
+          str += '<option>' + item + '</option>';
         });
         $('#inputState').html(str);
       });

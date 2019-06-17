@@ -1,3 +1,4 @@
+const csrf = require('csurf');
 const area_data = require('../../models/area_data');
 const allProducts = require('../../models/product/all_products_model');
 const orderRef = require('../../models/user/orders_model');
@@ -36,7 +37,8 @@ module.exports = class order {
           req.session.shopcart = shoppingList;         
           res.render('checkout',{
             shoppingList, 
-            totalPrice
+            totalPrice,
+            csrfToken: req.csrfToken()
           });
         }).catch(err => {
           res.render('error', {
