@@ -222,8 +222,7 @@
   /* user center */
   .user-record {
     height: 400px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: scroll;
   }
   .user-list {
     list-style: none;

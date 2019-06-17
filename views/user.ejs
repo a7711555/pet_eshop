@@ -21,9 +21,9 @@
       <div class="border border-info">
         <h4 class="text-center bg-info text-white p-2">訂單紀錄</h4>
         <div class="user-record jusitfy-content-center">
-          <table class="table table-responsive-md text-center">
+          <table class="table text-center">
             <thead>
-              <th width="300">訂單序號</th>
+              <th nowrap width="250">訂單序號</th>
               <th width="100">日期</th>
               <th>狀態</th>
               <th>付款</th>
@@ -39,7 +39,7 @@
                 <td><%- item.freight %></td>
                 <td><a href="" class="order-detail" data-toggle="modal" data-id="<%- item.orderId %>"
                     data-target="#details"><i class="fas fa-clipboard-list"></i></a></td>
-                <td>$ <%- item.totalPrice + 60 %> </td>
+                <td nowrap>$ <%- item.totalPrice + 60 %> </td>
               </tr>
               <% }); %>
             </tbody>
