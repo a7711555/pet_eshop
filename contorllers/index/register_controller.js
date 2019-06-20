@@ -49,7 +49,13 @@ module.exports = class register {
       // store user info
       fireDb.ref('/users/' + info.user.uid).set(userInfo);
       
-      res.redirect('/');
+      return fireAuth.signInWithEmailAndPassword(user.email, user.userpwd);
+    }).then(user => {
+      req.session.uid = user.user.uid;
+      return fireDb.ref('/users').child(user.user.uid).once('value');
+    }).then(snap => {
+      req.session.username = snap.val().username;
+      res.redirect('/user');
     }).catch(err => {
       if (err.code === 'auth/email-already-in-use') {
         req.flash('error', '這個信箱已經被註冊過囉');
