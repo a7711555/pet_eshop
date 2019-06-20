@@ -10,7 +10,7 @@ module.exports = class user {
 
     fireDb.ref('orders').child(uid).once('value').then(snap => {
       snap.forEach(item => {
-        shoppingHistory.push(item.val());
+        shoppingHistory.unshift(item.val());
       });
       return usersDb(uid);
     }).then(snap => {

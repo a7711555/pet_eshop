@@ -35,7 +35,7 @@
               <% shoppingHistory.forEach(item => { %>
               <tr>
                 <td><%- item.orderId %></td>
-                <td><%- moment(item.orderTime).format('YYYY/MM/DD') %></td>
+                <td><%- moment(item.order_time).format('YYYY/MM/DD') %></td>
                 <td><%- item.status %></td>
                 <td><%- item.freight %></td>
                 <td><a href="" class="order-detail" data-toggle="modal" data-id="<%- item.orderId %>"
