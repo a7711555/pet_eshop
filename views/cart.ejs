@@ -59,7 +59,9 @@
       if(self.html() === '+') {
         for (let i = 0; i < shopCartData.length; i++) {
           if (shopCartData[i].id === productId) {
-            shopCartData[i].qty++;
+            if(shopCartData[i].qty < 100) {
+              shopCartData[i].qty++;
+            }            
             break;
           }
         }

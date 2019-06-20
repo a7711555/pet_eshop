@@ -14,6 +14,9 @@ module.exports = class order {
           if (!item.qty.toString().match(positiveInt)) {
             throw (new Error('購物車物品數量錯誤'));
           }
+          if(item.qty > 100) {
+            throw (new Error('單項商品數量不可超過100件'));
+          }
         });
 
         allProducts.then(snap => {
@@ -52,7 +55,7 @@ module.exports = class order {
       }
     } catch (e) {
       res.render('error', {
-        msg: '購物車是空的'
+        msg: e.message
       })
     }
   }
