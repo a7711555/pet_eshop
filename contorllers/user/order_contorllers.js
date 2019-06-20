@@ -7,7 +7,8 @@ const usersDb = require('../../models/user/get_userinfo_model');
 module.exports = class order {
   checkout(req, res) {
     try {
-      const selection = JSON.parse(req.cookies.shopcart);
+      const shopcartStr = req.cookies.shopcart || '[]';
+      const selection = JSON.parse(shopcartStr);
       const positiveInt = new RegExp(/^[1-9]+[0-9]*]*$/);
       if (selection.length > 0) {
         selection.forEach(item => {
