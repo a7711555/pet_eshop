@@ -7,11 +7,11 @@ This is a simple pet eshop website. You can sign up and place an order.
 * Firebase
 
 # Setup
+*A firebase account and configuration is required!
 ```bash
 npm install 
 npm start
 ```
-*A firebase account and configuration is required!
 
 # Demo
 link: https://lihi1.cc/KCAMH
