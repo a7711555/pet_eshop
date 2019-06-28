@@ -7,7 +7,7 @@ This is a simple pet eshop website. You can sign up and place an order.
 * Firebase
 
 # Setup
-*A firebase account and configuration is required!
+*A firebase configuration is required!
 ```bash
 npm install 
 npm start
