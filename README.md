@@ -14,7 +14,7 @@ npm start
 ```
 
 # Demo
-link: https://lihi1.cc/KCAMH
+link:
 
 # Copyright and license
 Code released under the [MIT license](https://github.com/a7711555/pet_eshop/blob/master/LICENSE).
