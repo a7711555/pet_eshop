@@ -14,8 +14,6 @@ router.post('/updatePassword', csrfProtection, userController.updatePassword);
 const checkout = new Checkout();
 
 router.get('/checkout', csrfProtection, checkout.checkout);
-// area infomation api
-router.post('/checkout/data/:city', checkout.getAreaInfo);
 
 // get user info
 router.post('/checkout/details', csrfProtection, checkout.details);

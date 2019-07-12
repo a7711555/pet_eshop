@@ -1,5 +1,4 @@
 const csrf = require('csurf');
-const area_data = require('../../models/area_data');
 const allProducts = require('../../models/product/all_products_model');
 const orderRef = require('../../models/user/orders_model');
 const usersDb = require('../../models/user/get_userinfo_model');
@@ -102,15 +101,5 @@ module.exports = class order {
         msg: '系統發生錯誤請稍後再試'
       })
     });   
-  }
-
-  getAreaInfo(req, res) {
-    const city = req.params.city;
-    const citydecode = decodeURI(Buffer.from(city, 'base64').toString('utf8'));
-    res.send({
-      sccuess: true,
-      data: area_data[citydecode],
-    });
-    res.end();
   }
 }
